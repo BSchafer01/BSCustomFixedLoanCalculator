@@ -1,0 +1,65 @@
+﻿<h3>LoanCalculator</h3>
+
+<EditForm Model="@loan" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary Model="@loan" />
+    <div class="container">
+        <label id="balanceLabel" for="balanceText" data-toggle="tooltip" data-placement="top" title="Enter a loan amount between $10 and $1,000,000,000.">Loan Amount</label>
+        <input id="balanceSlider" type="range" min="10" max="1000000000" step="100" class="column slider" @bind-value="loan.Balance" />
+        <InputNumber @bind-Value="loan.Balance" class="form-control" id="balanceText" />
+        <ValidationMessage id="balanceMessage" For="@(() => loan.Balance)" class="text-danger" />
+
+        <label id="rateLabel"for="rateSlider" data-toggle="tooltip" data-placement="top" title="Enter an interest rate between 0 and 35 percent.">Loan Rate</label>
+        <input id="rateSlider" type="range" min="0" max="35" step="0.05" class="column slider" @bind-value="loan.Rate" />
+        <InputNumber id="rateText" @bind-Value="loan.Rate" class="form-control" max="35" min="0" step="0.05"></InputNumber>
+        <ValidationMessage id="rateMessage" For="@(() => loan.Rate)" class="text-danger" />
+
+        <label id="termLabel" for="termSlider" data-toggle="tooltip" data-placement="top" title="Enter the loan term in months between 1 and 480.">Loan Term</label>
+        <input id="termSlider" type="range" min="0" max="480" step="1" class="column slider" @bind-value="loan.Term" />
+        <InputNumber id="termText" @bind-Value="loan.Term" class="form-control" max="480" min="0" step="1"></InputNumber>
+        <ValidationMessage id="termMessage" For="@(() => loan.Term)" class="text-danger" />
+
+        <input type="submit" id="formSubmit" value="Calculate Payback" class="btn btn-primary"/>
+    </div>
+
+</EditForm>
+<br/>
+<br/>
+
+@if (showTable)
+{
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Month</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Principal Paid</th>
+                    <th scope="col">Interest Paid</th>
+                    <th scope="col">Cumulative Interest</th>
+                    <th scope="col">Cumulative Payment</th>
+                    <th scope="col">Remaining Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var r in results)
+                {
+                    <tr>
+                        <th scope="row">@r.Month</th>
+                        <td>@string.Format("{0:C}",r.TotalPayment)</td>
+                        <td>@string.Format("{0:C}", r.PrincipalPayment)</td>
+                        <td>@string.Format("{0:C}", r.InterestPayment)</td>
+                        <td>@string.Format("{0:C}", r.TotalInterest)</td>
+                        <td>@string.Format("{0:C}", r.TotalPaid)</td>
+                        <td>@string.Format("{0:C}", r.Balance)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
+}
+
+@code {
+
+}

@@ -5,5 +5,6 @@
         decimal Balance { get; set; }
         double Rate { get; set; }
         int Term { get; set; }
+        decimal AdditionalPrincipal { get; set; }
     }
 }

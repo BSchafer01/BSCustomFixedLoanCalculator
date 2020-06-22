@@ -23,5 +23,11 @@ namespace FixedLoanCalculator.Models
         public decimal TotalPaid { get; set; }
         [Required]
         public decimal TotalPayment { get; set; }
+        public decimal AdditionalPrincipal { get; set; }
+        public decimal AdditionalInterest { get; set; }
+        public decimal AdditionalTotalInterest { get; set; }
+        public decimal AdditionalTotalPrincipal { get; set; }
+        public decimal AdditionalBalance { get; set; }
+
     }
 }

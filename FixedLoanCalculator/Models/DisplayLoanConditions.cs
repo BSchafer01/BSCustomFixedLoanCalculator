@@ -18,5 +18,6 @@ namespace FixedLoanCalculator.Models
         [Required]
         [Range(1, 480, ErrorMessage = "Please enter a term between 1 month and 480 months (40 years).")]
         public int Term { get; set; }
+        public decimal AdditionalPrincipal { get; set; }
     }
 }

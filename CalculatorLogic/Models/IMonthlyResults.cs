@@ -9,5 +9,10 @@
         decimal TotalInterest { get; set; }
         decimal TotalPaid { get; set; }
         decimal TotalPayment { get; set; }
+        decimal AdditionalPrincipal { get; set; }
+        decimal AdditionalInterest { get; set; }
+        decimal AdditionalTotalInterest { get; set; }
+        decimal AdditionalTotalPrincipal { get; set; }
+        decimal AdditionalBalance { get; set; }
     }
 }

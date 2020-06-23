@@ -25,13 +25,34 @@
             
         </EditForm>
         @if(showTable){
-        <div class="results-container">
-            <h3 id="results-title">Summary</h3>
+    <div class="results-container">
+        <h3 id="results-title">Key Metrics</h3>
+        <div id="base">
+            <h4 id="basePayments">Base Payments</h4>
             <h5>Monthly Payment: </h5>
-            <h5>@string.Format("{0:C}", results[0].TotalPayment)</h5>
-            <h5>Total Interest Paid: </h5>
-            <h5>@results[0].TotalPayment</h5>
+            <h5><b>@string.Format("{0:C}", results[0].TotalPayment)</b></h5>
+            <h5>Final Payment: </h5>
+            <h5><b>Month @results.Last().Month</b></h5>
+            <h5>Total Interest: </h5>
+            <h5><b>@string.Format("{0:C}", results.Last().TotalInterest)</b></h5>
+            <h5></h5>
+            <h5></h5>
+
         </div>
+
+        <div id="additional">
+            <h4 id="additionalPayments">Additional Payments</h4>
+            <h5>Monthly Payment: </h5>
+            <h5><b>@(string.Format("{0:C}", results[0].AdditionalInterest + results[0].AdditionalPrincipal))</b></h5>
+            <h5>Early Payoff: </h5>
+            <h5><b>Month @(results.Where(x => x.AdditionalInterest == results.Where(x => x.AdditionalInterest > 0).Min(x => x.AdditionalInterest)).FirstOrDefault().Month)</b></h5>
+            <h5>Total Interest: </h5>
+            <h5><b>@(string.Format("{0:C}", results.Where(x => x.AdditionalInterest == results.Where(x => x.AdditionalInterest > 0).Min(x => x.AdditionalInterest)).FirstOrDefault().AdditionalTotalInterest))</b></h5>
+            <h5>Total Savings: </h5>
+            <h5><b>@(string.Format("{0:C}", results.Last().TotalInterest - results.Where(x => x.AdditionalInterest == results.Where(x => x.AdditionalInterest > 0).Min(x => x.AdditionalInterest)).FirstOrDefault().AdditionalTotalInterest))</b></h5>
+        </div>
+        
+    </div>
 
     }
         <div id="chartdiv"></div>
@@ -42,7 +63,7 @@
 
 @if (showTable)
 {
-    <div class="table-responsive">
+    <div class="table-responsive tableFixHead">
         <table class="table table-hover table-striped table-bordered table-sm">
             <thead>
                 <tr>

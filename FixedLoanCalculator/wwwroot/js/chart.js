@@ -34,10 +34,10 @@
 
 
 
-    series.push(createSeries("additionalTotalPrincipal", "Add'l: Total", valueAxis, "Additional Principal: Total Paid: "));
-    series.push(createSeries("totalPaid", "Base: Total", valueAxis, "Base Payment: Total Paid: "));
-    series.push(createSeries("interestPayment", "Base: Interest", interestAxis, "Base Payment: Interest Paid: "));
-    series.push(createSeries("additionalInterest", "Add'l: Interest", interestAxis, "Additional Principal: Interest Paid: "));
+    series.push(createSeries("additionalTotalPrincipal", "Add'l: Total", valueAxis, "Add'l-Total Paid: "));
+    series.push(createSeries("totalPaid", "Base: Total", valueAxis, "Base-Total Paid: "));
+    series.push(createSeries("interestPayment", "Base: Interest", interestAxis, "Base-Interest Paid: "));
+    series.push(createSeries("additionalInterest", "Add'l: Interest", interestAxis, "Add'l-Interest Paid: "));
 
 
 
